@@ -1,0 +1,24 @@
+function queueTime(customers, n) {
+  // Create an array of n tills, initialized with 0 time
+  const tills = Array(n).fill(0);
+
+  // Iterate through customers and distribute them to the tills
+  for (const customer of customers) {
+    // Find the till with the least waiting time
+    const minTill = tills.indexOf(Math.min(...tills));
+
+    // Add the customer's time to the selected till
+    tills[minTill] += customer;
+  }
+
+  // Find the till with the longest waiting time (the total time required)
+  const totalTime = Math.max(...tills);
+
+  return totalTime;
+}
+
+// Example usage:
+const customers = [5, 3, 4];
+const n = 2;
+const totalTime = queueTime(customers, n);
+console.log(totalTime); // Output: 7
